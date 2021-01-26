@@ -72,18 +72,31 @@ ENGINE=InnoDB
 DEFAULT CHARSET=utf8
 COLLATE=utf8_general_ci;
 
-CREATE TABLE traces_logs (
-	traces_log_id INT NOT NULL AUTO_INCREMENT,
+
+CREATE TABLE traces (
+	trace_id INT NOT NULL AUTO_INCREMENT,
 	person_id INT  null,
 	bus_info_id INT  null,
+	create_time_stamp DATETIME DEFAULT current_timestamp() NOT NULL,
+	CONSTRAINT traces_pk PRIMARY KEY (trace_id),
+	CONSTRAINT traces_persons_fk FOREIGN KEY (person_id) REFERENCES persons (person_id) ON DELETE cascade,
+	CONSTRAINT traces_bus_infos_fk FOREIGN KEY (bus_info_id) REFERENCES bus_infos (bus_info_id) ON DELETE cascade
+	)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+CREATE TABLE traces_logs (
+	traces_log_id INT NOT NULL AUTO_INCREMENT,
+	trace_id INT  null,
 	symptom_id INT  null,
 	create_time_stamp DATETIME DEFAULT current_timestamp() NOT NULL,
 	CONSTRAINT traces_logs_pk PRIMARY KEY (traces_log_id),
-	CONSTRAINT traces_logs_persons_fk FOREIGN KEY (person_id) REFERENCES persons (person_id) ON DELETE cascade,
-	CONSTRAINT traces_logs_bus_infos_fk FOREIGN KEY (bus_info_id) REFERENCES bus_infos (bus_info_id) ON DELETE cascade,
+	CONSTRAINT traces_logs_traces_fk FOREIGN KEY (trace_id) REFERENCES traces (trace_id) ON DELETE cascade,
 	CONSTRAINT traces_logs_symptoms_fk FOREIGN KEY (symptom_id) REFERENCES symptoms (symptom_id) ON DELETE CASCADE
 	)
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8
 COLLATE=utf8_general_ci;
+
 
