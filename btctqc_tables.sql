@@ -2,7 +2,7 @@ CREATE TABLE persons (
 	person_id INT NOT NULL AUTO_INCREMENT,
 	first_name varchar(100) NOT NULL,
 	middle_name varchar(100) NOT NULL,
-	lastName varchar(100)  NOT NULL,
+	last_name varchar(100)  NOT NULL,
 	address varchar(100)  NOT NULL,
 	contact_number varchar(100)  NOT NULL,
 	create_time_stamp DATETIME DEFAULT current_timestamp() NOT NULL,
