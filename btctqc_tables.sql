@@ -2,7 +2,8 @@ CREATE TABLE users (
 	user_id INT NOT NULL AUTO_INCREMENT,
 	username varchar(100) NOT NULL,
 	password varchar(100) NOT NULL,
-	active BOOL NOT NULL,
+	active BOOL NOT null default 1,
+	admin bool not null default 0,
 	create_time_stamp DATETIME DEFAULT current_timestamp() NOT NULL,
 	CONSTRAINT users_pk PRIMARY KEY (user_id)
 )
