@@ -1,20 +1,21 @@
-create or replace view view_traces as 
+create or replace view view_surveys as 
 	select 
-		traces.person_id,
-		persons.first_name,
-		persons.middle_name,
-		persons.lastName,
-		bus_infos.code,
-		bus_infos.name
-	from traces
-	join persons on traces.person_id = persons.person_id
-	join bus_infos on bus_infos.bus_info_id = traces.bus_info_id;
+		surveys.survey_id,
+		user_details.first_name,
+		user_details.middle_name,
+		user_details.last_name,
+		bus_infos.code bus_code,
+		bus_infos.name bus_name,
+		surveys.create_time_stamp
+	from surveys
+	join users on users.user_id = surveys.user_id
+	join user_details on users.user_id = user_details.user_id
+	join bus_infos on bus_infos.bus_info_id = surveys.bus_info_id;
 	
-create or replace view view_traces_logs as 
+create or replace view view_responses as 
 	select 
-		traces_logs.traces_log_id,
-		traces_logs.trace_id,
-		symptoms.symptom_id,
-		symptoms.name
-	from traces_logs
-	join symptoms on symptoms.symptom_id = traces_logs.symptom_id;
+		responses.response_id,
+		conditions.name condition_name,
+		responses.survey_id
+	from responses
+	join conditions on conditions.condition_id = responses.condition_id;
