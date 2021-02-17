@@ -6,7 +6,8 @@ create or replace view view_surveys as
 		user_details.last_name,
 		bus_infos.code bus_code,
 		bus_infos.name bus_name,
-		surveys.create_time_stamp
+		surveys.create_time_stamp,
+		user_details.contact_number
 	from surveys
 	join users on users.user_id = surveys.user_id
 	join user_details on users.user_id = user_details.user_id
