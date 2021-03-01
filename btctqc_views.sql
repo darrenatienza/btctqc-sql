@@ -20,3 +20,24 @@ create or replace view view_responses as
 		responses.survey_id
 	from responses
 	join conditions on conditions.condition_id = responses.condition_id;
+	
+	
+create
+or replace
+view view_summaries as select
+    (
+    select
+        count( bus_info_id )
+    from
+        bus_infos ) as bus_count,
+    (
+    select
+        count( user_id )
+    from
+        users ) as passenger_count,
+    (
+    select
+        count( survey_id )
+    from
+        surveys ) as survey_count
+    
