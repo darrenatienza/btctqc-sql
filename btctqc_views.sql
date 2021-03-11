@@ -22,6 +22,8 @@ create or replace view view_responses as
 	join conditions on conditions.condition_id = responses.condition_id;
 	
 	
+
+	
 create
 or replace
 view view_summaries as select
