@@ -1,6 +1,7 @@
 create or replace view view_surveys as 
 	select 
 		surveys.survey_id,
+		users.user_id,
 		user_details.first_name,
 		user_details.middle_name,
 		user_details.last_name,
@@ -32,7 +33,8 @@ create or replace view view_user_details as
 		ud.middle_name ,
 		ud.user_detail_id ,
 		ud.user_id ,
-		u2.admin 
+		u2.admin,
+		u2.request_password_reset
 	from user_details ud 
 	join users u2 on ud.user_id = u2.user_id ;
 
