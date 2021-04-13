@@ -14,6 +14,11 @@ create or replace view view_surveys as
 	join user_details on users.user_id = user_details.user_id
 	join bus_infos on bus_infos.bus_info_id = surveys.bus_info_id;
 	
+create or replace view view_surveys_dates as 
+	select 
+		surveys.create_time_stamp
+	from surveys group by date(surveys.create_time_stamp);
+	
 create or replace view view_responses as 
 	select 
 		responses.response_id,
@@ -56,5 +61,5 @@ view view_summaries as select
     select
         count( survey_id )
     from
-        surveys ) as survey_count
+        surveys ) as survey_count;
     
