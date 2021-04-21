@@ -16,8 +16,9 @@ create or replace view view_surveys as
 	
 create or replace view view_surveys_dates as 
 	select 
-		surveys.create_time_stamp
-	from surveys group by date(surveys.create_time_stamp);
+		create_time_stamp,
+		bus_info_id
+	from surveys group by date(create_time_stamp);
 	
 create or replace view view_responses as 
 	select 
