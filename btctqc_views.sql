@@ -8,7 +8,8 @@ create or replace view view_surveys as
 		bus_infos.code bus_code,
 		bus_infos.name bus_name,
 		surveys.create_time_stamp,
-		user_details.contact_number
+		user_details.contact_number,
+		surveys.temperature
 	from surveys
 	join users on users.user_id = surveys.user_id
 	join user_details on users.user_id = user_details.user_id
@@ -19,7 +20,7 @@ create or replace view view_surveys_dates as
 		survey_id,
 		create_time_stamp,
 		bus_info_id
-	from surveys group by date(create_time_stamp);
+	from surveys group by date(create_time_stamp), bus_info_id ;
 
 create or replace view view_bus_passenger_list as 
 	select
@@ -29,7 +30,8 @@ create or replace view view_bus_passenger_list as
 		surveys.user_id,
 		first_name,
 		middle_name,
-		last_name
+		last_name,
+		surveys .temperature 
 	from surveys join users on surveys.user_id = users.user_id join user_details on users.user_id = user_details.user_id ;
 	
 create or replace view view_responses as 
@@ -54,7 +56,8 @@ create or replace view view_user_details as
 		u2.admin,
 		ud.gender,
 		ud.birth_date,
-		u2.request_password_reset
+		u2.request_password_reset,
+		ud.profile_pic
 	from user_details ud 
 	join users u2 on ud.user_id = u2.user_id ;
 
