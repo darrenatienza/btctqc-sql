@@ -31,7 +31,11 @@ create or replace view view_bus_passenger_list as
 		first_name,
 		middle_name,
 		last_name,
-		surveys .temperature 
+		surveys .temperature ,
+		surveys .start_route ,
+		surveys .destination_route ,
+		user_details .address,
+		user_details .contact_number
 	from surveys join users on surveys.user_id = users.user_id join user_details on users.user_id = user_details.user_id ;
 	
 create or replace view view_responses as 
